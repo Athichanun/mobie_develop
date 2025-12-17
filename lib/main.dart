@@ -33,8 +33,12 @@ class MyApp extends StatelessWidget {
           title: Text('My App',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
         ),
-        body: Text('Hello test',
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w300)),
+        body: Column(children: [
+          Text('Hello CS test'),
+          Text('kmutnb'),
+        ])
+            // Text('Hello test',
+            // style: TextStyle(fontSize: 22, fontWeight: FontWeight.w300)),
       ),
     );
   }
