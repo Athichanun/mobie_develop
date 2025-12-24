@@ -56,27 +56,38 @@ class MyApp extends StatelessWidget {
         ),
         body: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text('Hello CS test',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               Row(
                 children: [
+                   Image.asset(
+                    'assets/images/Introduction-to-CORTIS-the-new-kpop-group-delivered-korea-blog-512x288.jpg',
+                    width: 200,
+                    height: 200,
+                  ),
+                  SizedBox(width: 50,),
                   Text(
                     'Heart broken',
                   ),
                   Icon(Icons.heart_broken),
                 ],
               ),
-              Text('kmutnb'),
-              Image.network(
-                'https://voguesg.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2025/10/23133142/cortis-680x1020-1.jpg',
-                height: 220,
-              ),
-              Image.asset(
-                'assets/images/Introduction-to-CORTIS-the-new-kpop-group-delivered-korea-blog-512x288.jpg',
-                width: 200,
-                height: 200,
+              Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Image.network(
+                    'https://voguesg.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2025/10/23133142/cortis-680x1020-1.jpg',
+                    height: 220,
+                    width: 200,
+                  ),
+                  Image.asset(
+                    'assets/images/Introduction-to-CORTIS-the-new-kpop-group-delivered-korea-blog-512x288.jpg',
+                    width: 200,
+                    height: 200,
+                  ),
+                ],
               ),
               SizedBox(
                 height: 12,
