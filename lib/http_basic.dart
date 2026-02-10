@@ -5,7 +5,7 @@ import 'dart:convert';
 
 Future<String> fetchData() async {
   final response =
-      await http.get(Uri.parse('https://www.itpart.net/mobile/api/product0.php'));
+      await http.get(Uri.parse('http://jsonplaceholder.typicode.com/posts/1'));
 
   if (response.statusCode == 200) {
     final jSONbody = json.decode(response.body);
@@ -16,7 +16,7 @@ Future<String> fetchData() async {
     // return jSONbody['title'];
   } else {
     // throw an exception.
-    throw Exception('problem..');
+    throw Exception('problem...');
   }
 }
 
