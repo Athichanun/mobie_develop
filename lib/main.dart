@@ -2,12 +2,13 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:mobie_develop/about_page.dart';
-import 'package:mobie_develop/datail_page.dart';
+import 'package:mobie_develop/detail_page.dart';
 import 'package:mobie_develop/display_page.dart';
 import 'package:mobie_develop/http_basic.dart';
 import 'package:mobie_develop/my_futurebuilder_page.dart';
 import 'package:mobie_develop/mylist_page.dart';
 import 'package:mobie_develop/welcome_page.dart';
+import 'package:mobie_develop/bottom_navbar_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,10 +35,13 @@ class MyApp extends StatelessWidget {
       // home: const WelcomePage(),
 
       routes: {
-        '/': (context) => const HttpBasic(),
+        // '/': (context) => const HttpBasic(),
+        // '/': (context) => const DetailPage(),
+        '/': (context) => const BottomNavBarPage(),
+        // '/': (context) => const WelcomePage(),
         '/about': (context) => AboutPage(),
         '/display': (context) => DisplayPage(name: ''),
-        '/list' : (context) => MylistPage(),
+        // '/list' : (context) => MylistPage(),
       },
       initialRoute: '/',
     

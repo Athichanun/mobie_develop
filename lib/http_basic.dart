@@ -30,12 +30,7 @@ class HttpBasic extends StatefulWidget {
 class _HttpBasicState extends State<HttpBasic> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.amberAccent,
-        title: const Text('HttpBasic Page'),
-      ),
-      body: FutureBuilder(
+    return FutureBuilder(
         future: fetchData(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -47,7 +42,26 @@ class _HttpBasicState extends State<HttpBasic> {
           }
           return const Text('No data available!');
         },
-      ),
-    );
+      );
   }
 }
+
+// Scaffold(
+//       // appBar: AppBar(
+//       //   backgroundColor: Colors.amberAccent,
+//       //   title: const Text('HttpBasic Page'),
+//       // ),
+//       body: FutureBuilder(
+//         future: fetchData(),
+//         builder: (context, snapshot) {
+//           if (snapshot.connectionState == ConnectionState.waiting) {
+//             return const CircularProgressIndicator();
+//           } else if (snapshot.hasData) {
+//             return Text('${snapshot.data}');
+//           } else if (snapshot.hasError) {
+//             return Text('${snapshot.error}');
+//           }
+//           return const Text('No data available!');
+//         },
+//       ),
+//     );

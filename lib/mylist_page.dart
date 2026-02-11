@@ -1,44 +1,63 @@
+// ListView
+
 import 'package:flutter/material.dart';
-import 'package:mobie_develop/about_page.dart';
-import 'package:mobie_develop/catalog_product.dart';
-import 'package:mobie_develop/datail_page.dart';
+import 'detail_page.dart';
+import 'models/product.dart';
+import 'services/http_service.dart';
 
-class MylistPage extends StatelessWidget {
-  const MylistPage({super.key});
+class MyListPage extends StatefulWidget {
+  const MyListPage({super.key});
 
+  @override
+  State<MyListPage> createState() => _MyListPageState();
+}
 
-  // final List<String> products = <String>[
-  //   'Water Filter',
-  //   'Brown Long sleeve Jacket T01',
-  //   'Filter 3 steps',
-  //   'Smart Robot Car',
-  //   'Remote controller DC-01'
-  // ];
+class _MyListPageState extends State<MyListPage> {
+  HttpService httpService = HttpService();
+
+  String baseUrl = 'https://itpart.net/mobile/api/products.php'; // API json
+  String baseImgUrl = 'https://itpart.net/mobile/images/'; // base Image
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.amberAccent,
-        title: const Text('My List Page'),
-      ),
-      body: ListView.separated(
-        itemCount: CatalogProduct.items.length,
-        itemBuilder: (context, index) => 
-        ListTile(
-          leading: Image.network(CatalogProduct.items[index].imageUrl),
-          title: Text(CatalogProduct.items[index].title),
-          subtitle: Text(CatalogProduct.items[index].desc),
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => DetailPage(
-              product: CatalogProduct.items[index],
-            )))
-          ),
-          separatorBuilder: (context, int index) => const Divider(),
-      )
-    
-      
-      
-    );
+    // debugPrint("myapp: $baseUrl & $baseImgUrl");
+    return Center(
+        child: FutureBuilder(
+          future: httpService.fetchData(strUrl: baseUrl),  ///รันฟังก์นี้ก่อนแล้วถึงจะสร้างข้อมูล
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator();
+            } else if (snapshot.hasData) {
+              List<Product>? products = snapshot.data;
+              return ListView.separated(
+                itemCount: products!.length,
+                itemBuilder: (context, index) => ListTile(
+                  leading: Image.network(
+                    '$baseImgUrl/${products[index].imageUrl}',
+                    width: 86,
+                  ),
+                  title: Text(products[index].title,
+                      style: TextStyle(fontSize: 18)),
+                  subtitle: Text(products[index].description),
+                  onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetailPage(
+                      productId: products[index].id
+                      )
+                    )
+                  ),
+                ),
+                
+                separatorBuilder: (context, int index) => const Divider(),
+              );
+            } else {
+              return const Text('No data found.');
+            }
+          },
+        ),
+      );
   }
 }
+it config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
